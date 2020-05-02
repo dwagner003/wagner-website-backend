@@ -140,7 +140,20 @@ exports.findAllRead = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving Books."
+            err.message || "Some error occurred while retrieving Read Books."
         });
       });
+  };
+
+exports.findAllNotRead = (req, res) => {
+  Book.findAll({ where: { read: false } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Not Read Books."
+      });
+    });
   };

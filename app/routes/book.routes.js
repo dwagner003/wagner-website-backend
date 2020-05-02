@@ -11,6 +11,9 @@ module.exports = app => {
   
     // Retrieve all read Books
     router.get("/read", books.findAllRead);
+
+    // Retrieve all read Books
+    router.get("/notRead", books.findAllNotRead);
   
     // Retrieve a single Book with id
     router.get("/:id", books.findOne);
