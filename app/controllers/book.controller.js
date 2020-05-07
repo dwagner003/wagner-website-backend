@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     // Create a Book
   const book = {
       title: req.body.title,
+      author: req.body.author,
       description: req.body.description,
       read: req.body.read ? req.body.read : false
   };
