@@ -20,7 +20,7 @@ const db = require("./app/models");
 //});
 
 var corsOptions = {
-    origin: "http://localhost:4200"
+    origin: ["http://localhost:4200", "http://devinwagner.tech" ]
 };
 
 app.use(cors(corsOptions));
