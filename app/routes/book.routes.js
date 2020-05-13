@@ -7,10 +7,10 @@ const authCheck = jwt({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: "https://dev-85d746sq.auth0.com/.well-known/jwks.json"
+        jwksUri: process.env.JWKS_KEY
     }),
     // This is the identifier we set when we created the API
-    audience: 'http://localhost:4200',
+    audience: process.env.FRONT_END_HOST,
     algorithms: ['RS256']
 });
 

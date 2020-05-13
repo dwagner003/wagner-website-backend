@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: "127.0.0.1",
-    USER: "root",
-    PASSWORD: "",
-    DB: "WagnerWebsite",
+    HOST: process.env.HOST,
+    USER: process.env.USERNAME,
+    PASSWORD: process.env.PASSWORD,
+    DB: process.env.DATABASE,
     dialect: "mysql",
     pool: {
         max: 5,

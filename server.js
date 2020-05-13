@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config();
 const express = require("express");
 const app = express();
 
@@ -20,7 +21,7 @@ const db = require("./app/models");
 //});
 
 var corsOptions = {
-    origin: ["http://localhost:4200", "http://frontend.devinwagner.tech" ]
+    origin: [process.env.FRONT_END_HOST ]
 };
 
 app.use(cors(corsOptions));
