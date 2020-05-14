@@ -15,10 +15,6 @@ app.use((req, res, next) => {
 });
 
 const db = require("./app/models");
-//This needs to go away before production like env.
-//db.sequelize.sync({ force: true}).then(() => {
- //   console.log("Dropping and syncing db.")
-//});
 
 var corsOptions = {
     origin: [process.env.FRONT_END_HOST ]
