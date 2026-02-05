@@ -1,18 +1,21 @@
 const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
-  operatorsAliases: false,
 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
-});
+// Use connection URL for Postgres, individual options for SQLite
+const sequelize = dbConfig.url
+  ? new Sequelize(dbConfig.url, {
+      dialect: dbConfig.dialect,
+      dialectOptions: dbConfig.dialectOptions,
+      logging: false,
+      pool: dbConfig.pool
+    })
+  : new Sequelize({
+      dialect: dbConfig.dialect,
+      storage: dbConfig.storage,
+      logging: false,
+      pool: dbConfig.pool
+    });
 
 const db = {};
 

@@ -25,10 +25,6 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.unsubscribe(bodyParser.json);
-
-app.unsubscribe(bodyParser.urlencoded({extended: true}));
-
 app.get("/", (req, res) => {
     res.json({message : "Welcome to the wagner website"});
 });
@@ -36,6 +32,13 @@ app.get("/", (req, res) => {
 require("./app/routes/book.routes")(app);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+
+// Sync database and start server
+db.sequelize.sync().then(() => {
+    console.log("Database synced.");
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}.`);
+    });
+}).catch(err => {
+    console.error("Failed to sync database:", err);
 });

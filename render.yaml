@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: wagner-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONT_END_HOST
+        value: https://devinwagner.tech
+      - key: JWKS_KEY
+        value: https://dev-swlmfrcsuhyftfl6.us.auth0.com/.well-known/jwks.json
+      - key: API_AUDIENCE
+        sync: false

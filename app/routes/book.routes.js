@@ -1,16 +1,16 @@
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+const { expressjwt: jwt } = require('express-jwt');
+const { expressJwtSecret } = require('jwks-rsa');
 
 
 const authCheck = jwt({
-  secret: jwks.expressJwtSecret({
+  secret: expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
         jwksUri: process.env.JWKS_KEY
     }),
     // This is the identifier we set when we created the API
-    audience: process.env.FRONT_END_HOST,
+    audience: process.env.API_AUDIENCE,
     algorithms: ['RS256']
 });
 
